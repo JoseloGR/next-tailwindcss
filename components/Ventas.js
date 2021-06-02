@@ -1,6 +1,35 @@
+import { useState } from "react";
 import TableWrapper from "./TableWrapper";
 
 export default function Ventas(props) {
+  const [team, setTeam] = useState("0");
+  const [user, setUser] = useState("0");
+  const [sales, setSales] = useState([]);
+
+  const handleTeamChange = (event) => {
+    setUser("0");
+    setSales([]);
+    setTeam(event.target.value);
+    requestSales(event.target.value, 'equipo');
+  }
+
+  const handleUserChange = (event) => {
+    setTeam("0");
+    setSales([]);
+    setUser(event.target.value);
+    requestSales(event.target.value, 'usuario');
+  }
+
+  const requestSales = async (id, user_type) => {
+    const res = await fetch(
+      `http://localhost:8000/ventas/${user_type}/${parseInt(id)}`
+    );
+    const result = await res.json();
+    if (result && result.length > 0) {
+      setSales(result);
+    }
+  }
+
   return (
     <>
     <div className="flex flex-row p-4">
@@ -10,8 +39,9 @@ export default function Ventas(props) {
           <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-black py-3 px-4 pr-8 rounded leading-tight focus:outline-none" 
                   id="team"
                   name="team"
-                  defaultValue="">
-            <option value="" disabled>Selecciona</option>
+                  value={team}
+                  onChange={handleTeamChange}>
+            <option value="0" disabled>Selecciona</option>
             {
               props.equipos.map(equipo => (
                 <option key={`team-${equipo.id}`} value={`${equipo.id}`}>{equipo.nombre}</option>    
@@ -29,8 +59,9 @@ export default function Ventas(props) {
           <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-black py-3 px-4 pr-8 rounded leading-tight focus:outline-none" 
                   id="team"
                   name="team"
-                  defaultValue="">
-            <option value="" disabled>Selecciona</option>
+                  value={user}
+                  onChange={handleUserChange}>
+            <option value="0" disabled>Selecciona</option>
             {
               props.usuarios.map(usuario => (
                 <option key={`team-${usuario.id}`} value={`${usuario.id}`}>{usuario.nombre}</option>    
@@ -68,6 +99,31 @@ export default function Ventas(props) {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-blueGray-200">
+          {
+            sales ?
+            sales.map(sale => (
+              <tr key={`${sale.id}`}>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="text-sm font-medium text-blueGray-900">{sale.id}</div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="text-sm font-medium text-blueGray-900">{sale.fecha}</div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="text-sm font-medium text-blueGray-900">{sale.cliente_nombre}</div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="text-sm font-medium text-blueGray-900">{sale.monto}</div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="text-sm font-medium text-blueGray-900">{sale.equipo_nombre}</div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="text-sm font-medium text-blueGray-900">{sale.usuario_nombre}</div>
+                </td>
+              </tr>
+            )) : null
+          }
         </tbody>
       </table>
     </TableWrapper>
