@@ -35,9 +35,9 @@ export default function Navigation() {
             </div>
           </div>
           <div className="absolute hidden sm:block inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <button onClick={() => router.push('/')} className="bg-transparent hover:bg-blueGray-800 text-blueGray font-semibold hover:text-white py-2 px-4 border border-blueGray-800 hover:border-transparent rounded-sm">
+            {/* <button onClick={() => router.push('/')} className="bg-transparent hover:bg-blueGray-800 text-blueGray font-semibold hover:text-white py-2 px-4 border border-blueGray-800 hover:border-transparent rounded-sm">
               Home
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
@@ -45,7 +45,7 @@ export default function Navigation() {
       {/* <!-- Mobile menu, show/hide based on menu state. --> */}
       <div className={`${activeMenu ? '': 'hidden'} sm:hidden`} id="mobile-menu">
         <div className="px-2 pt-2 pb-3 space-y-1">
-          <a onClick={() => router.push('/')} href="#" className="text-gray-600 hover:bg-gray-100 block px-3 py-2 rounded-md font-medium">Home</a>
+          {/* <a onClick={() => router.push('/')} href="#" className="text-gray-600 hover:bg-gray-100 block px-3 py-2 rounded-md font-medium">Home</a> */}
         </div>
       </div>
       <style jsx>{`

@@ -107,13 +107,13 @@ export default function Ventas(props) {
                   <div className="text-sm font-medium text-blueGray-900">{sale.id}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-blueGray-900">{sale.fecha}</div>
+                  <div className="text-sm font-medium text-blueGray-900">{new Intl.DateTimeFormat("es-MX", {year: "numeric", month: "long", day: "numeric", hour:"numeric", minute: "numeric", second: "numeric"}).format(new Date(sale.fecha))}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm font-medium text-blueGray-900">{sale.cliente_nombre}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-blueGray-900">{sale.monto}</div>
+                  <div className="text-sm font-medium text-blueGray-900">{new Intl.NumberFormat("es-MX", {style: "currency", currency: "MXN"}).format(sale.monto)}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm font-medium text-blueGray-900">{sale.equipo_nombre}</div>
