@@ -1,23 +1,28 @@
-# Next.js + Tailwind CSS Example
+# Web Application
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) (v2.1) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+La aplicación web se desarrolló utilizando el Framework Next.js, que se basa en React. Implementando la librería de estilos Tailwindcss.
 
-It uses the new [`Just-in-Time Mode`](https://tailwindcss.com/docs/just-in-time-mode) for Tailwind CSS.
 
-## Deploy your own
+## Instalación y ejecución de FrontEnd
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+Para correr el proyecto sólo se deben instalar las dependencias con npm
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+Se requieren las siguientes versiones instaladas
+* node `v12.13.0`
+* bnpm `7.11.1`
 
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+Una vez que se tiene instalado correr los siguientes comandos
 
 ```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
+cd next-tailwindcss/
+npm install
+npm run dev
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Esto levantará un servidor web en localhost:3000
+
+Entrar con el navegador de confianza en `http://localhost:3000`
+
+Nota importante:
+
+Antes de abrir la aplicación web se debe tener corriendo el servidor de backend para su correcto funcionamiento
