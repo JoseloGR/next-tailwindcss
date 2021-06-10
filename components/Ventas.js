@@ -5,16 +5,18 @@ export default function Ventas(props) {
   const [team, setTeam] = useState("0");
   const [user, setUser] = useState("0");
   const [sales, setSales] = useState([]);
+  const [users, setUsers] = useState(props.usuarios);
 
   const handleTeamChange = (event) => {
     setUser("0");
     setSales([]);
     setTeam(event.target.value);
     requestSales(event.target.value, 'equipo');
+    const filteredUsers = props.usuarios.filter(u => u.equipo_id == event.target.value);
+    setUsers(filteredUsers);
   }
 
   const handleUserChange = (event) => {
-    setTeam("0");
     setSales([]);
     setUser(event.target.value);
     requestSales(event.target.value, 'usuario');
@@ -54,18 +56,19 @@ export default function Ventas(props) {
         </div>
       </div>
       <div className="px-3 mb-3">
-        <label htmlFor="team" className="tracking-wide text-black text-xs font-bold mb-2">Usuarios</label>
+        <label htmlFor="user" className="tracking-wide text-black text-xs font-bold mb-2">Usuarios</label>
         <div className="relative mb-3">
           <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-black py-3 px-4 pr-8 rounded leading-tight focus:outline-none" 
-                  id="team"
-                  name="team"
+                  id="user"
+                  name="user"
                   value={user}
                   onChange={handleUserChange}>
             <option value="0" disabled>Selecciona</option>
             {
-              props.usuarios.map(usuario => (
-                <option key={`team-${usuario.id}`} value={`${usuario.id}`}>{usuario.nombre}</option>    
-              ))
+              users ?
+              users.map(usuario => (
+                <option key={`user-${usuario.id}`} value={`${usuario.id}`}>{usuario.nombre}</option>    
+              )) : null
             }
           </select>
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
